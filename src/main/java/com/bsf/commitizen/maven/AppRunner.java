@@ -6,6 +6,6 @@ public class AppRunner {
     }
 
     public static void myMethod() {
-        System.out.println("MyMethod!");
+        System.out.println("running my method!");
     }
 }
