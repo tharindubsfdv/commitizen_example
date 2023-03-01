@@ -1,7 +1,7 @@
 package com.bsf.commitizen.maven;
 
-public class SpringBootApp {
+public class MyApp {
     public static void main(String[] args) {
-        System.out.println("I am your new app!");
+        System.out.println("Add my app runner");
     }
 }
