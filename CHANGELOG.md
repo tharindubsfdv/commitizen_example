@@ -1,3 +1,9 @@
+## 0.3.0 (2023-03-01)
+
+### Feat
+
+- replace the old runner with new one BREAKING CHANGE: old runner will not work anymore
+
 ## 0.2.1 (2023-03-01)
 
 ### Fix
