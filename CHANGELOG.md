@@ -1,3 +1,9 @@
+## 2.0.0 (2023-03-01)
+
+### Feat
+
+- replace the old runner with SpringApplication
+
 ## 1.0.0 (2023-03-01)
 
 ### Feat
