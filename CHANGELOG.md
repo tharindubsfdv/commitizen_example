@@ -1,3 +1,9 @@
+## 1.0.0 (2023-03-01)
+
+### Feat
+
+- replace the old runner my app runner BREAKING CHANGE: old runner will not work anymore
+
 ## 0.3.0 (2023-03-01)
 
 ### Feat
