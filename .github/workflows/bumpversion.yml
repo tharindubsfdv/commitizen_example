@@ -42,6 +42,3 @@ jobs:
           git add pom.xml
           git commit -m "bump: pom.xml"
           git push
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: development
