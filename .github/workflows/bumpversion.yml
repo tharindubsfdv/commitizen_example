@@ -31,18 +31,14 @@ jobs:
           tag_name: ${{ env.REVISION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  update-pom:
-    needs: bump-version
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out
-        uses: actions/checkout@v2
-      - name: Install Java and Maven
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Update version in pom.xml (Release only)
+      - name: Update version in pom.xml
         run: |
-          mvn -B versions:set -DnewVersion=4.0.0 -DgenerateBackupPoms=false
-          mvn -B versions:commit
+          mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
+          mvn versions:commit
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "tharindubsfdv"
+          git config --global user.email "tharindu.e@bsfdv.com"
+          git add pom.xml
+          git commit -m "bump: pom.xml"
+          git push
