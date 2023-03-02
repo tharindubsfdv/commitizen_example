@@ -32,19 +32,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  bump-version-maven:
-    needs: bump-version
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+  publish:
     runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"
     steps:
-      - name: Checkout Latest Commit
+      - name: Check out Git repository
         uses: actions/checkout@v2
+      - name: Install Java and Maven
+        uses: actions/setup-java@v1
         with:
-          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
-          fetch-depth: 0
-      - name: Update version in pom.xml
-        run: |
-          mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
-          mvn versions:commit
-
+          java-version: 8
+      - if: github.event.release
+        name: Update version in pom.xml (Release only)
+        run: mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
