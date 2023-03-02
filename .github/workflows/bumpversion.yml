@@ -36,9 +36,8 @@ jobs:
           mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
           mvn versions:commit
       - name: Commit files
-        run:
-          git config --local user.name actions-user
-          git config --local user.email "actions@github.com"
-          git add pom.xml
-          git commit -am "bump pom.xml"
-          git push -f origin main
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: pom.xml
+          commit-msg: bump:update pom
+          github-token: ${{ secrets.GITHUB_TOKEN }}
