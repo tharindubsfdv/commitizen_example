@@ -35,10 +35,12 @@ jobs:
         run: |
           mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
           mvn versions:commit
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "tharindubsfdv"
-          git config --global user.email "tharindu.e@bsfdv.com"
-          git add pom.xml
-          git commit -m "bump: pom.xml"
-          git push
+      - name: Commit files
+        run:
+          git config --local user.name actions-user
+          git config --local user.email "actions@github.com"
+          if ! git diff --exit-code; then
+            git add pom.xml
+            git commit -am "bump pom.xml"
+            git push -f origin main
+          fi
