@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
-      - name: Check out the repository
+      - name: Checkout Latest Commit
         uses: actions/checkout@v2
         with:
           token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
@@ -31,6 +31,12 @@ jobs:
           tag_name: ${{ env.REVISION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  bump-version-maven:
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+    runs-on: ubuntu-latest
+    name: "Bump version and create changelog with commitizen"
+    steps:
       - name: Update version in pom.xml
         run: |
           mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
