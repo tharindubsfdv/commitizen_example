@@ -1,3 +1,9 @@
+## 4.0.6 (2023-03-02)
+
+### Fix
+
+- add env config into maven bump job
+
 ## 4.0.5 (2023-03-02)
 
 ### Fix
