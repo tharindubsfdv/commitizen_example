@@ -32,15 +32,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  publish:
+  update-pom:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
+      - name: Check out
         uses: actions/checkout@v2
       - name: Install Java and Maven
         uses: actions/setup-java@v1
         with:
-          java-version: 8
-      - if: github.event.release
-        name: Update version in pom.xml (Release only)
+          java-version: 11
+      - name: Update version in pom.xml (Release only)
         run: mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
