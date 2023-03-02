@@ -1,3 +1,9 @@
+## 4.0.4 (2023-03-02)
+
+### Fix
+
+- update mvn versions bump commit
+
 ## 4.0.3 (2023-03-02)
 
 ### Fix
