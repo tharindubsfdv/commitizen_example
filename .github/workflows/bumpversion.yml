@@ -39,8 +39,6 @@ jobs:
         run:
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
-          if ! git diff --exit-code; then
-            git add pom.xml
-            git commit -am "bump pom.xml"
-            git push -f origin main
-          fi
+          git add pom.xml
+          git commit -am "bump pom.xml"
+          git push -f origin main
