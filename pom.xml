@@ -6,7 +6,7 @@
 
     <groupId>com.bsf.commitizen.maven</groupId>
     <artifactId>java-maven-commitizen-sample</artifactId>
-    <version>0.1.1</version>
+    <version>4.1.0</version>
     <name>java-maven-commitizen-sample</name>
     <description>Java Maven Commitizen Sample</description>
 
