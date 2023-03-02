@@ -1,3 +1,9 @@
+## 4.0.0 (2023-03-02)
+
+### Fix
+
+- remove release check in pom version upgrade
+
 ## 3.0.0 (2023-03-02)
 
 ### Feat
