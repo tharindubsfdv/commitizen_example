@@ -34,14 +34,14 @@ permissions:
 
 jobs:
   bump-version:
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"    
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
-    name: "Bump version and create changelog with commitizen"    
+    name: "Bump version and create changelog with commitizen"
     steps:
-      - name: Check out
+      - name: Checkout Latest Commit
         uses: actions/checkout@v2
         with:
-          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"          
+          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
           fetch-depth: 0
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
@@ -51,10 +51,20 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: "body.md"          
+          body_path: "body.md"
           tag_name: ${{ env.REVISION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update version in pom.xml
+        run: |
+          mvn -B versions:set -DnewVersion=${{ env.REVISION }} -DgenerateBackupPoms=false
+          mvn versions:commit
+      - name: Commit files
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: pom.xml
+          commit-msg: bump:update pom
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 8. Push this file and that’s it! 
