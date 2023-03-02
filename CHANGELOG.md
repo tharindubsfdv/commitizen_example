@@ -1,3 +1,9 @@
+## 4.0.5 (2023-03-02)
+
+### Fix
+
+- shift the maven update into a separate job
+
 ## 4.0.4 (2023-03-02)
 
 ### Fix
