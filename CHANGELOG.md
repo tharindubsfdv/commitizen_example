@@ -1,3 +1,9 @@
+## 3.0.0 (2023-03-02)
+
+### Feat
+
+- add modify pom command in pipeline
+
 ## 2.0.0 (2023-03-01)
 
 ### Feat
